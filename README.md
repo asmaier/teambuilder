@@ -2,9 +2,20 @@
 
 Teambuilder is a small tool that helps to solve the problem of assigning N people to M teams, when each team has a
 limited capacity of K members. To do this each person must give a list of preferences from 1 (most preferred team)
-to K (least preferred team).
+to K (least preferred team). The skript then uses the [Hungarian algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm)
+(also called Kuhn-Munkres algorithm) to find a solution to this assignment problem.
+
+In a broader context this assignment problem belongs to the class of _Bipartite matching problems with one sided
+preferences_ (see [Manlove(2013): Algorithmics of Matching Under Preferences](https://books.google.de/books?id=jPO6CgAAQBAJ&lpg=PP1&hl=de&pg=PA4#v=onepage&q&f=true)). This is also called House Allocation problem. The name stems from the application where students are
+assigned to campus housing, based on their preferences. When each house can only accomodate applicants to a fixed
+capacity (as in our problem here) the problem is called Capacitated House Allocation problem (CHA). Since the preferences
+are only given by one side the notion of stability is not relevant. Other optimality criteria have to be used. The
+Hungarian algorithm as it is used here maximizes the number of applicants with their first choice.
 
 ## Installation
+
+The python skript makes use of the [munkres package](https://pypi.python.org/pypi/munkres/) for python
+(see also (http://software.clapper.org/munkres/)). So you have to install this package first:
 
     $ pip install munkres
 
