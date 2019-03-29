@@ -17,7 +17,7 @@ Hungarian algorithm as it is used here maximizes the number of applicants with t
 The python skript makes use of the [munkres package](https://pypi.python.org/pypi/munkres/) for python
 (see also (http://software.clapper.org/munkres/)). So you have to install this package first:
 
-    $ pip install munkres
+    $ pip3 install munkres
 
 ## Usage
 
@@ -32,7 +32,7 @@ The preferences of each person must be stored as CSV file like in this example:
 
  To compute a possible assignment of the people to the three teams "team1", "team2" and "team3" with a capacity of 2 do
 
-     $ python teambuilder.py <name_of_csv> 2
+     $ python3 teambuilder.py <name_of_csv> 2
      WISHES:
      ['Markus', ' 3', '2', '1']
      ['Jan', ' 2', '3', '1']
@@ -50,6 +50,3 @@ The preferences of each person must be stored as CSV file like in this example:
 
 The tool will randomly shuffle the rows of the input file. So to see another possible assignment just rerun the tool
 again.
-
-
-

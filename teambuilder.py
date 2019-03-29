@@ -1,6 +1,4 @@
 import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
 import csv
 import random
 from itertools import repeat
@@ -12,19 +10,19 @@ TEAM_CAPACITY = int(sys.argv[2])
 
 m = Munkres()
 
-with open(FILENAME, "rb") as csvfile:
+with open(FILENAME, "r") as csvfile:
     wishes = csv.reader(csvfile, delimiter=',', quotechar='"')
 
-    teams = wishes.next()[1:]
+    teams = next(wishes)[1:]
     names = []
 
     rows = list(wishes)
     random.shuffle(rows)
 
-    print "WISHES:"
+    print("WISHES:")
     matrix = []
     for row in rows:
-        print row
+        print(row)
         names.append(row[0])
         temp = row[1:]
         dummyrows = [int(x) for item in temp for x in repeat(item, TEAM_CAPACITY)]
@@ -32,12 +30,12 @@ with open(FILENAME, "rb") as csvfile:
 
     indexes = m.compute(matrix)
 
-    print "TEAM ASSIGNMENT:"
+    print("TEAM ASSIGNMENT:")
     total = 0
     for row, column in indexes:
         value = matrix[row][column]
         total += value
-        print '(%s, %s) -> %d' % (names[row], teams[column/TEAM_CAPACITY], value)
+        print('(%s, %s) -> %d' % (names[row], teams[column//TEAM_CAPACITY], value))
 
-    print "FAIRNESS:"
-    print len(indexes)/float(total)
+    print("FAIRNESS:")
+    print(len(indexes)/float(total))
